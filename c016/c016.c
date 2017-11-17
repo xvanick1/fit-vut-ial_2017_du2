@@ -123,29 +123,25 @@ tHTItem* htSearch ( tHTable* ptrht, tKey key ) {
 void htInsert ( tHTable* ptrht, tKey key, tData data ) {
 
     tHTItem *temp;
-    tHTItem *newItem;
-    int idx = hashCode(key);
-    if(*ptrht == NULL){
-        return;
-    }
-    else{
-        temp = htSearch(ptrht, key);
-        if(temp == NULL){
-            newItem = (tHTItem *) malloc(sizeof(tHTItem));
-            if(newItem == NULL){
-                return;
-            }
-            else{
-                newItem->key = key;
-                newItem->data = data;
-                newItem->ptrnext = (*ptrht)[idx];
-                (*ptrht)[idx] = newItem;
-            }
-        }
-        else{
+
+    if(*ptrht != NULL){       
+        
+        if((temp = htSearch(ptrht, key)) != NULL) //hladanie prvku na rovnakom indexe
             temp->data = data;
+                 
+        else{
+
+            temp = (tHTItem *) malloc(sizeof(tHTItem));
+            
+            if (temp != NULL){  //kontrola alokace
+                temp->key = key;  
+                temp->data = data;                
+                temp->ptrnext = (*ptrht)[hashCode(key)];    //naviazanie na zaciatok
+                (*ptrht)[hashCode(key)] = temp;
+            }
+            
         }
-    } ///copyright !!!
+    } 
 }
 
 /*
@@ -188,35 +184,35 @@ tData* htRead ( tHTable* ptrht, tKey key ) {
 
 void htDelete ( tHTable* ptrht, tKey key ) {
 
-    if(*ptrht == NULL){
-        return;
-    }
-    else{
-        int idx = hashCode(key);
-        tHTItem *temp;
-        tHTItem *temp_n;
+    if(*ptrht != NULL){
+       
+        tHTItem *temp = NULL;
+        tHTItem *temp_n = NULL;
 
-        temp = (*ptrht)[idx];
-        temp_n = NULL;
-        if(temp == NULL){
+        if((temp = (*ptrht)[hashCode(key)]) == NULL){
             return;
         }
+        
         else{
             if(temp->key == key){
                 temp_n = temp;
-                (*ptrht)[idx] = temp->ptrnext;
+                (*ptrht)[hashCode(key)] = temp->ptrnext;
                 free(temp_n);
+                temp_n = NULL;
             }
+            
             else{
-                while(temp->ptrnext != NULL){
-                    if(temp->ptrnext->key == key){
-                        temp_n = temp->ptrnext;
-                        temp->ptrnext = temp->ptrnext->ptrnext;
+                while(temp->ptrnext != NULL){   //dokym nie sme na konci
+                    
+                    if(temp->ptrnext->key != key)
+                        temp = temp->ptrnext;   //posun na dalsi prvok
+                    else{   //nasli sme prvok, odstranime a previazeme pointre
+                        temp_n = temp->ptrnext; 
+                        temp->ptrnext = temp_n->ptrnext;
                         free(temp_n);
+                        temp_n = NULL;
                     }
-                    else{
-                        temp = temp->ptrnext;
-                    }
+                   
                 }
             }
         }
