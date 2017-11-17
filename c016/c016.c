@@ -94,17 +94,18 @@ tHTItem* htSearch ( tHTable* ptrht, tKey key ) {
         tHTItem *temp;
         temp = (*ptrht)[hashCode(key)];	// Ziskáme ukazateľ na ďalšiu položku
         while(temp != NULL){
-            if(temp->key != key){ // Testujeme či sa našla hľadaná položka
-                temp=temp->ptrnext;
-            }
-            else { // Ak áno, vrátime ju
+            if(temp->key == key){ // Testujeme či sa našla hľadaná položka
                 return temp;
+            }
+            else{
+                temp=temp->ptrnext;
             }
         }
         return NULL;
     }
     else{
         return NULL;
+    }
 }
 
 /* 
@@ -132,15 +133,13 @@ void htInsert ( tHTable* ptrht, tKey key, tData data ) {
 
             temp = (tHTItem *) malloc(sizeof(tHTItem));
             
-            if (temp != NULL){  // Kontrola alokácie
+            if (temp != NULL){  //kontrola alokace
                 temp->key = key;  
                 temp->data = data;                
                 temp->ptrnext = (*ptrht)[hashCode(key)];    // Naviazanie na začiatok
                 (*ptrht)[hashCode(key)] = temp;
             }
-			else{
-				return;
-			}
+            
         }
     } 
 }
