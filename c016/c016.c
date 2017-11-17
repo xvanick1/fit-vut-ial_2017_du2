@@ -72,7 +72,7 @@ void htInit ( tHTable* ptrht ) {
     if (*ptrht != NULL){
         int idx = 0;
         while(idx < HTSIZE){
-            (*ptrht)[idx] = NULL;
+            (*ptrht)[idx] = NULL; // Nastavíme všetky ukazatele na daných indexoch na NULL
             idx++;
         }
     }
@@ -94,18 +94,17 @@ tHTItem* htSearch ( tHTable* ptrht, tKey key ) {
         tHTItem *temp;
         temp = (*ptrht)[hashCode(key)];	// Ziskáme ukazateľ na ďalšiu položku
         while(temp != NULL){
-            if(temp->key == key){
-                return temp;
-            }
-            else{
+            if(temp->key != key){ // Testujeme či sa našla hľadaná položka
                 temp=temp->ptrnext;
+            }
+            else { // Ak áno, vrátime ju
+                return temp;
             }
         }
         return NULL;
     }
     else{
         return NULL;
-    } ///PREPIS TO INAK !!!
 }
 
 /* 
@@ -126,20 +125,22 @@ void htInsert ( tHTable* ptrht, tKey key, tData data ) {
 
     if(*ptrht != NULL){       
         
-        if((temp = htSearch(ptrht, key)) != NULL) //hladanie prvku na rovnakom indexe
+        if((temp = htSearch(ptrht, key)) != NULL) // Hľadanie prvku na rovnakom indexe
             temp->data = data;
                  
         else{
 
             temp = (tHTItem *) malloc(sizeof(tHTItem));
             
-            if (temp != NULL){  //kontrola alokace
+            if (temp != NULL){  // Kontrola alokácie
                 temp->key = key;  
                 temp->data = data;                
-                temp->ptrnext = (*ptrht)[hashCode(key)];    //naviazanie na zaciatok
+                temp->ptrnext = (*ptrht)[hashCode(key)];    // Naviazanie na začiatok
                 (*ptrht)[hashCode(key)] = temp;
             }
-            
+			else{
+				return;
+			}
         }
     } 
 }
@@ -202,11 +203,11 @@ void htDelete ( tHTable* ptrht, tKey key ) {
             }
             
             else{
-                while(temp->ptrnext != NULL){   //dokym nie sme na konci
+                while(temp->ptrnext != NULL){   // Pokiaľ nie sme na konci
                     
                     if(temp->ptrnext->key != key)
-                        temp = temp->ptrnext;   //posun na dalsi prvok
-                    else{   //nasli sme prvok, odstranime a previazeme pointre
+                        temp = temp->ptrnext;   // Posun na ďalší prvok
+                    else{   // Našli sme prvok, odstránime a previažeme pointre
                         temp_n = temp->ptrnext; 
                         temp->ptrnext = temp_n->ptrnext;
                         free(temp_n);
@@ -216,7 +217,7 @@ void htDelete ( tHTable* ptrht, tKey key ) {
                 }
             }
         }
-    } ///copyright !!!
+    }
 }
 
 /* TRP s explicitně zřetězenými synonymy.
