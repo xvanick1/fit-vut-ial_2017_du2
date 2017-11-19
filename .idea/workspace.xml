@@ -12,40 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cb345d0-09f8-4bc2-be70-0c6a96d5fddf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-advanced-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-advanced-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-advanced-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/c016.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/diff-advanced.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c016/diff-standard.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-advanced-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-advanced-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-advanced-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/c401.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/diff-advanced.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c401/diff-standard.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-advanced-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-advanced-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-advanced-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-test-result.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-test.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402-test.output" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/c402.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/diff-advanced.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/c402/diff-standard.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/c016/tests/torture_me.sh" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/c401/c401.c" afterPath="$PROJECT_DIR$/c401/c401.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/c402/c402.c" afterPath="$PROJECT_DIR$/c402/c402.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c016/valgrind.txt" afterPath="$PROJECT_DIR$/tests/c016/valgrind.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c401/valgrind.txt" afterPath="$PROJECT_DIR$/tests/c401/valgrind.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c402/c402-advanced-test-result.txt" afterPath="$PROJECT_DIR$/tests/c402/c402-advanced-test-result.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c402/c402-test-result.txt" afterPath="$PROJECT_DIR$/tests/c402/c402-test-result.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c402/diff-advanced.txt" afterPath="$PROJECT_DIR$/tests/c402/diff-advanced.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/c402/diff-standard.txt" afterPath="$PROJECT_DIR$/tests/c402/diff-standard.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,6 +32,11 @@
   <component name="FileEditorManager">
     <leaf />
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>stackP</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -66,6 +45,7 @@
       <list>
         <option value="$PROJECT_DIR$/c016/c016.c" />
         <option value="$PROJECT_DIR$/c401/c401.c" />
+        <option value="$PROJECT_DIR$/c402/c402.c" />
       </list>
     </option>
   </component>
@@ -76,9 +56,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="50" />
-    <option name="y" value="-13" />
-    <option name="width" value="1936" />
+    <option name="x" value="855" />
+    <option name="y" value="4" />
+    <option name="width" value="1855" />
     <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -109,7 +89,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -122,7 +102,29 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ial_2017_du2" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="ial_2017_du2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ial_2017_du2" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="ial_2017_du2" type="462c0819:PsiDirectoryNode" />
+              <item name="c401" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ial_2017_du2" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="ial_2017_du2" type="462c0819:PsiDirectoryNode" />
+              <item name="c402" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -174,6 +176,7 @@
       <workItem from="1511017382241" duration="125000" />
       <workItem from="1511018803929" duration="11562000" />
       <workItem from="1511039241045" duration="5244000" />
+      <workItem from="1511096231191" duration="21359000" />
     </task>
     <task id="LOCAL-00001" summary="First working version">
       <created>1510949397522</created>
@@ -186,12 +189,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41378000" />
+    <option name="totallyTimeSpent" value="62737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26409185" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13177083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -226,7 +229,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="First working version" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -335,13 +340,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/c402/c402.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/c016/c016.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -361,16 +359,8 @@
         <state relative-caret-position="374">
           <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding>
-            <element signature="e#923#940#0" expanded="true" />
+            <element signature="e#923#940#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/c401/c401.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="208" column="76" lean-forward="true" selection-start-line="208" selection-start-column="76" selection-end-line="208" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -378,7 +368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="298" column="4" lean-forward="false" selection-start-line="298" selection-start-column="4" selection-end-line="298" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -386,6 +375,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4692">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c401/c401.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="237" column="0" lean-forward="false" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c402/c402.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-217">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/c402/c402.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="208" column="80" lean-forward="false" selection-start-line="208" selection-start-column="80" selection-end-line="208" selection-end-column="80" />
           <folding />
         </state>
       </provider>
