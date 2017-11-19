@@ -85,13 +85,11 @@ int BSTSearch (tBSTNodePtr RootPtr, char K, int *Content)	{
 			*Content = RootPtr->BSTNodeCont;
 			return  TRUE; // Našli sme uzol
 		}
-		else{
-			if(RootPtr->Key > K){ // Hľadáme v ľavom podstrome
+		else if(RootPtr->Key > K){ // Hľadáme v ľavom podstrome
 				return(BSTSearch(RootPtr->LPtr, K, Content));
 			}
-			else{ // Hľadáme v pravom podstrome
+		else{ // Hľadáme v pravom podstrome
 				return(BSTSearch(RootPtr->RPtr, K, Content));
-			}
 		}
 	}
 } 
@@ -116,10 +114,7 @@ void BSTInsert (tBSTNodePtr* RootPtr, char K, int Content)	{
 
 	if(*RootPtr == NULL){
 		tBSTNodePtr CreateNode = malloc(sizeof(struct tBSTNode));
-		if(CreateNode == NULL){ // Kontrujeme úspešnosť alokácie
-			return;
-		}
-		else{
+		if(CreateNode != NULL){ // Kontrujeme úspešnosť alokácie
 			CreateNode->Key = K; // Kopírujeme kľúč
 			CreateNode->BSTNodeCont = Content; // Kopírujeme obsah
 			CreateNode->LPtr = NULL; // Nastavíme ukazateľ na ľavý podstrom na NULL
@@ -134,7 +129,7 @@ void BSTInsert (tBSTNodePtr* RootPtr, char K, int Content)	{
 		else if((*RootPtr)->Key < K){
 			BSTInsert(&((*RootPtr)->RPtr), K, Content); // Využijeme rekurziu a ideme vpravo
 		}
-		else{
+		else if((*RootPtr)->Key == K){
 			(*RootPtr)->BSTNodeCont = Content; // Prepíšeme obsah uzlu novým
 		}
 	}
@@ -153,19 +148,16 @@ void ReplaceByRightmost (tBSTNodePtr PtrReplaced, tBSTNodePtr *RootPtr) {
 ** přečtěte si komentář k funkci BSTDelete(). 
 **/
 
-	if(*RootPtr == NULL){ // Testujeme hodnotu ukazateľa RootPtr
-		return;
-	}
-	else{
-		if((*RootPtr)->RPtr != NULL){ // Testujeme "najpravejší" uzol
-			ReplaceByRightmost(PtrReplaced,&(*RootPtr)->RPtr); // Ak nie je "najpravejší" tak rekurze
-		}
-		else{ // Ak je "najpravejší" ....
-			PtrReplaced->Key = (*RootPtr)->Key; // Kopírujeme kľúč
-			PtrReplaced->BSTNodeCont = (*RootPtr)->BSTNodeCont; // Kopírujeme obsah
-			tBSTNodePtr NewNode = (*RootPtr); // Uložíme do pomocného uzla
-			(*RootPtr) = (*RootPtr)->LPtr; // Posunieme sa ďalej
+	tBSTNodePtr NewNode = (*RootPtr);
+	if(NewNode != NULL){ // Testujeme hodnotu ukazateľa RootPtr
+		if((NewNode)->RPtr == NULL){ // Testujeme "najpravejší" uzol a ak je "najpravejší" ....
+			PtrReplaced->BSTNodeCont = (NewNode)->BSTNodeCont; // Kopírujeme obsah
+			PtrReplaced->Key = (NewNode)->Key; // Kopírujeme kľúč
+			(*RootPtr) = (NewNode)->LPtr; // Posunieme sa ďalej
 			free(NewNode); // Uvolníme pomocný uzol
+		}
+		else{
+			ReplaceByRightmost(PtrReplaced,&(*RootPtr)->RPtr); // Ak nie je "najpravejší" tak rekurzia
 		}
 	}
 }
@@ -183,12 +175,12 @@ void BSTDelete (tBSTNodePtr *RootPtr, char K) 		{
 ** pomocné funkce ReplaceByRightmost.
 **/
 
-	if(*RootPtr == NULL){ // Testujeme hodnotu ukazateľa RootPtr
-		return;
-	}
-	else{
+	if(*RootPtr != NULL){ // Testujeme hodnotu ukazateľa RootPtr
+		
 		if((*RootPtr)->Key == K){ //Testujeme či uzol so zadaným kľúčom existuje
+            
             tBSTNodePtr TempNode;
+            
             if((*RootPtr)->RPtr == NULL){ //Testujeme či existuje pravý podstrom
                 TempNode = *RootPtr; // Uložíme si ukazateľ na pravý podstrom
                 *RootPtr = (*RootPtr)->LPtr; // Pokračujeme do ľavého podstromu
@@ -204,14 +196,14 @@ void BSTDelete (tBSTNodePtr *RootPtr, char K) 		{
                 ReplaceByRightmost((*RootPtr), &(*RootPtr)->LPtr); // Voláme pomocnú funkiu pre dosiahnutie "najpravejšieho" uzlu ľaveého podstromu
             }
         }
-        else{
-			if((*RootPtr)->Key < K){ //Testujeme či je hľadaný kľúč menší než náš
+        
+        else if((*RootPtr)->Key < K){ //Testujeme či je hľadaný kľúč väčší než náš
 				BSTDelete(&(*RootPtr)->RPtr, K); // Ak áno využijeme rekurziu a postujujeme vľavo
-			}
-			if((*RootPtr)->Key > K){ //Testujeme či je hľadaný kľúč väčší než náš
-				BSTDelete(&(*RootPtr)->LPtr, K); // Ak áno využijeme rekurziu a postujujeme pravo
-			}
 		}
+		else if((*RootPtr)->Key > K){ //Testujeme či je hľadaný kľúč väčší než náš
+				BSTDelete(&(*RootPtr)->LPtr, K); // Ak áno využijeme rekurziu a postujujeme pravo
+		}
+		
 	}
 } 
 
@@ -224,14 +216,16 @@ void BSTDispose (tBSTNodePtr *RootPtr) {
 ** funkce.
 **/
 
-	if(*RootPtr == NULL){
+	while(*RootPtr != NULL){ // Cyklíme pokial strom nebude postupne odstánený
+		if(*RootPtr == NULL){
 		return;
-	}
-	else{
-		BSTDispose(&(*RootPtr)->LPtr);	// Rekurziou odstraňujeme ľavý podstrom
-		BSTDispose(&(*RootPtr)->RPtr);	// Rekurziou odstraňujeme pravý podstrom
-		free((*RootPtr)); //Korektne uvoľňujeme
-        *RootPtr = NULL;
+		}
+		else{
+			BSTDispose(&(*RootPtr)->LPtr);	// Rekurziou odstraňujeme ľavý podstrom
+			BSTDispose(&(*RootPtr)->RPtr);	// Rekurziou odstraňujeme pravý podstrom
+			free((*RootPtr)); //Korektne uvoľňujeme
+        	*RootPtr = NULL;
+		}
 	}
 }
 

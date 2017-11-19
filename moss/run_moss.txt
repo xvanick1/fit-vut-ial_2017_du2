@@ -1,0 +1,1 @@
+./moss.sh -l c -b c402-zadani.c c402-j.c adka402.c neznamy.c

@@ -182,7 +182,7 @@ void BTInit (tBTNodePtr *RootPtr)	{
 ** proto je třeba při práci s RootPtr použít dereferenční operátor *.
 **/
 
-	(*RootPtr) = NULL; // Inicializujeme BVS
+	(*RootPtr) = NULL;
 }
 
 void BTInsert (tBTNodePtr *RootPtr, int Content) {
@@ -198,44 +198,33 @@ void BTInsert (tBTNodePtr *RootPtr, int Content) {
 
 	tBTNodePtr SubNode;
 	SubNode = (*RootPtr);
-	if(*RootPtr != NULL){ //Kontrolujeme či nejaký strom existuje
+	if(*RootPtr != NULL){
         do{
-            if(SubNode != NULL) { //Kontrola kvôli +1 cyklu
-                if ((SubNode)->Cont < Content) { // Testujeme či je Content väčší než aktuální
+            if(SubNode != NULL) {
+                if ((SubNode)->Cont < Content) {
                     if (SubNode->RPtr != NULL) {
                         SubNode = SubNode->RPtr;
                     } else {
-                        tBTNodePtr TempChild; // Pomocný Child
+                        tBTNodePtr TempChild;
                         TempChild = (tBTNodePtr) malloc(sizeof(struct tBTNode));
-                        if(TempChild == NULL) { // Kontrola alokácie
-                        	return;
-                        }
-                        else{
-                        	TempChild->LPtr = NULL;
-                        	TempChild->RPtr = NULL;
-                        	TempChild->Cont = Content;
-                        	SubNode->RPtr = TempChild;
-                        	break;
-                        }
-
+                        TempChild->LPtr = NULL;
+                        TempChild->RPtr = NULL;
+                        TempChild->Cont = Content;
+                        SubNode->RPtr = TempChild;
+                        break;
                     }
                 }
-                if ((SubNode)->Cont > Content) { // Testujeme či je Content väčší než aktuální
+                if ((SubNode)->Cont > Content) {
                     if (SubNode->LPtr != NULL) {
                         SubNode = SubNode->LPtr;
                     } else {
-                        tBTNodePtr TempChild; // Pomocný Child
+                        tBTNodePtr TempChild;
                         TempChild = (tBTNodePtr) malloc(sizeof(struct tBTNode));
-                        if(TempChild == NULL) { // Kontrola alokácie
-                        	return;
-                        }
-                        else{
-                        	TempChild->RPtr = NULL;
-                        	TempChild->LPtr = NULL;
-                        	TempChild->Cont = Content;
-                        	SubNode->LPtr = TempChild;
-                        	break;
-                        }
+                        TempChild->RPtr = NULL;
+                        TempChild->LPtr = NULL;
+                        TempChild->Cont = Content;
+                        SubNode->LPtr = TempChild;
+                        break;
                     }
                 }
                 if ((SubNode)->Cont == Content) {
@@ -243,7 +232,7 @@ void BTInsert (tBTNodePtr *RootPtr, int Content) {
                 }
             }
         }
-        while(SubNode != NULL); // Postupne cyklíme a prechádzame stromom
+        while(SubNode != NULL);
 	}
 	else{
 		tBTNodePtr TempChild;
@@ -265,10 +254,10 @@ void Leftmost_Preorder (tBTNodePtr ptr, tStackP *Stack)	{
 ** a ukazatele na ně is uložíme do zásobníku.
 **/
 
-	if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            BTWorkOut(ptr); // Voláme pomocnú funkciu
-            SPushP(Stack, ptr); // Pushujeme na zasobník
+	if(ptr != NULL){
+        while(ptr != NULL){
+            BTWorkOut(ptr);
+            SPushP(Stack, ptr);
             ptr = ptr->LPtr;
         }
     }
@@ -283,9 +272,9 @@ void BTPreorder (tBTNodePtr RootPtr)	{
 
 	if(RootPtr != NULL){
         tStackP stackP;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        Leftmost_Preorder(RootPtr, &stackP); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
+        SInitP(&stackP);
+        Leftmost_Preorder(RootPtr, &stackP);
+        while (!SEmptyP(&stackP)){
             RootPtr = STopPopP(&stackP);
             Leftmost_Preorder(RootPtr->RPtr, &stackP);
         }
@@ -303,9 +292,9 @@ void Leftmost_Inorder(tBTNodePtr ptr, tStackP *Stack)		{
 ** zásobníku. 
 **/
 
-    if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            SPushP(Stack, ptr); // Pushujeme na zasobník
+    if(ptr != NULL){
+        while(ptr != NULL){
+            SPushP(Stack, ptr);
             ptr = ptr->LPtr;
         }
     }
@@ -320,11 +309,11 @@ void BTInorder (tBTNodePtr RootPtr)	{
 
     if(RootPtr != NULL){
         tStackP stackP;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        Leftmost_Inorder(RootPtr, &stackP); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
+        SInitP(&stackP);
+        Leftmost_Inorder(RootPtr, &stackP);
+        while (!SEmptyP(&stackP)){
             RootPtr = STopPopP(&stackP);
-            BTWorkOut(RootPtr); // Voláme pomocnú funkciu
+            BTWorkOut(RootPtr);
             Leftmost_Inorder(RootPtr->RPtr, &stackP);
         }
     }
@@ -341,10 +330,10 @@ void Leftmost_Postorder (tBTNodePtr ptr, tStackP *StackP, tStackB *StackB) {
 ** navštíven poprvé a že se tedy ještě nemá zpracovávat. 
 **/
 
-    if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            SPushP(StackP, ptr); // Pushujeme na zasobník
-            SPushB(StackB, true); // Pushujeme na zasobník
+    if(ptr != NULL){
+        while(ptr != NULL){
+            SPushP(StackP, ptr);
+            SPushB(StackB, true);
             ptr = ptr->LPtr;
 
         }
@@ -361,19 +350,19 @@ void BTPostorder (tBTNodePtr RootPtr)	{
     if(RootPtr != NULL){
         tStackP stackP;
         tStackB stackB;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        SInitB(&stackB); // Voláme pomocnú funkciu na inicializáciu stacku
+        SInitP(&stackP);
+        SInitB(&stackB);
         bool Left;
-        Leftmost_Postorder(RootPtr, &stackP, &stackB); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
+        Leftmost_Postorder(RootPtr, &stackP, &stackB);
+        while (!SEmptyP(&stackP)){
             RootPtr = STopPopP(&stackP);
-            SPushP(&stackP, RootPtr); // Vkládame na zásobník
+            SPushP(&stackP, RootPtr);
             Left = STopPopB(&stackB);
-            if(Left){ // Ideme zľava doprava
+            if(Left){
                 SPushB(&stackB,false);
                 Leftmost_Postorder(RootPtr->RPtr, &stackP, &stackB);
             }
-            else{ // Ideme zprava a odstránime "Root"
+            else{
                 STopPopP(&stackP);
                 BTWorkOut(RootPtr);
             }
@@ -391,22 +380,22 @@ void BTDisposeTree (tBTNodePtr *RootPtr)	{
 
     if((*RootPtr) != NULL) //strom existuje
     {
-        tStackP stackP; // Voláme pomocnú funkciu na inicializáciu stacku
-        SInitP(&stackP); 
+        tStackP stackP;
+        SInitP(&stackP);
         do{
-            if(*RootPtr == NULL) { // Kontrolujeme či exstuje Root
+            if(*RootPtr == NULL) {
                 if (!SEmptyP(&stackP)) {
-                    *RootPtr = STopPopP(&stackP); // Vezmeme uzol zo zásobníku
+                    *RootPtr = STopPopP(&stackP);
                 }
             }
             else{
-                if((*RootPtr)->RPtr != NULL){ // Pravého syna dávame na zásobník
+                if((*RootPtr)->RPtr != NULL){
                     SPushP(&stackP, (*RootPtr)->RPtr);
                 }
                 tBTNodePtr TempPtr;
                 TempPtr = *RootPtr;
-                *RootPtr = (*RootPtr)->LPtr; // Ideme doľava
-                free(TempPtr); // Zrušíme aktuálny uzol
+                *RootPtr = (*RootPtr)->LPtr;
+                free(TempPtr);
                 }
         }while((*RootPtr != NULL) || (!SEmptyP(&stackP)));
     }

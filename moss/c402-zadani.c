@@ -181,8 +181,9 @@ void BTInit (tBTNodePtr *RootPtr)	{
 ** Všimněte si, že zde se poprvé v hlavičce objevuje typ ukazatel na ukazatel,	
 ** proto je třeba při práci s RootPtr použít dereferenční operátor *.
 **/
-
-	(*RootPtr) = NULL; // Inicializujeme BVS
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 void BTInsert (tBTNodePtr *RootPtr, int Content) {
@@ -195,64 +196,10 @@ void BTInsert (tBTNodePtr *RootPtr, int Content) {
 ** se ve stromu může vyskytnout nejvýše jednou). Pokud se vytváří nový uzel,
 ** vzniká vždy jako list stromu. Funkci implementujte nerekurzivně.
 **/
-
-	tBTNodePtr SubNode;
-	SubNode = (*RootPtr);
-	if(*RootPtr != NULL){ //Kontrolujeme či nejaký strom existuje
-        do{
-            if(SubNode != NULL) { //Kontrola kvôli +1 cyklu
-                if ((SubNode)->Cont < Content) { // Testujeme či je Content väčší než aktuální
-                    if (SubNode->RPtr != NULL) {
-                        SubNode = SubNode->RPtr;
-                    } else {
-                        tBTNodePtr TempChild; // Pomocný Child
-                        TempChild = (tBTNodePtr) malloc(sizeof(struct tBTNode));
-                        if(TempChild == NULL) { // Kontrola alokácie
-                        	return;
-                        }
-                        else{
-                        	TempChild->LPtr = NULL;
-                        	TempChild->RPtr = NULL;
-                        	TempChild->Cont = Content;
-                        	SubNode->RPtr = TempChild;
-                        	break;
-                        }
-
-                    }
-                }
-                if ((SubNode)->Cont > Content) { // Testujeme či je Content väčší než aktuální
-                    if (SubNode->LPtr != NULL) {
-                        SubNode = SubNode->LPtr;
-                    } else {
-                        tBTNodePtr TempChild; // Pomocný Child
-                        TempChild = (tBTNodePtr) malloc(sizeof(struct tBTNode));
-                        if(TempChild == NULL) { // Kontrola alokácie
-                        	return;
-                        }
-                        else{
-                        	TempChild->RPtr = NULL;
-                        	TempChild->LPtr = NULL;
-                        	TempChild->Cont = Content;
-                        	SubNode->LPtr = TempChild;
-                        	break;
-                        }
-                    }
-                }
-                if ((SubNode)->Cont == Content) {
-                    return;
-                }
-            }
-        }
-        while(SubNode != NULL); // Postupne cyklíme a prechádzame stromom
-	}
-	else{
-		tBTNodePtr TempChild;
-		TempChild = (tBTNodePtr)malloc(sizeof(struct tBTNode));
-		TempChild->LPtr = NULL;
-		TempChild->RPtr = NULL;
-        TempChild->Cont = Content;
-		*RootPtr = TempChild;
-	}
+	
+	
+		
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 /*                                  PREORDER                                  */
@@ -265,13 +212,9 @@ void Leftmost_Preorder (tBTNodePtr ptr, tStackP *Stack)	{
 ** a ukazatele na ně is uložíme do zásobníku.
 **/
 
-	if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            BTWorkOut(ptr); // Voláme pomocnú funkciu
-            SPushP(Stack, ptr); // Pushujeme na zasobník
-            ptr = ptr->LPtr;
-        }
-    }
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 void BTPreorder (tBTNodePtr RootPtr)	{
@@ -281,15 +224,9 @@ void BTPreorder (tBTNodePtr RootPtr)	{
 ** realizujte jako volání funkce BTWorkOut(). 
 **/
 
-	if(RootPtr != NULL){
-        tStackP stackP;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        Leftmost_Preorder(RootPtr, &stackP); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
-            RootPtr = STopPopP(&stackP);
-            Leftmost_Preorder(RootPtr->RPtr, &stackP);
-        }
-    }
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 
@@ -302,13 +239,11 @@ void Leftmost_Inorder(tBTNodePtr ptr, tStackP *Stack)		{
 ** Při průchodu Inorder ukládáme ukazatele na všechny navštívené uzly do
 ** zásobníku. 
 **/
-
-    if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            SPushP(Stack, ptr); // Pushujeme na zasobník
-            ptr = ptr->LPtr;
-        }
-    }
+	
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
+	
 }
 
 void BTInorder (tBTNodePtr RootPtr)	{
@@ -318,16 +253,9 @@ void BTInorder (tBTNodePtr RootPtr)	{
 ** realizujte jako volání funkce BTWorkOut(). 
 **/
 
-    if(RootPtr != NULL){
-        tStackP stackP;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        Leftmost_Inorder(RootPtr, &stackP); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
-            RootPtr = STopPopP(&stackP);
-            BTWorkOut(RootPtr); // Voláme pomocnú funkciu
-            Leftmost_Inorder(RootPtr->RPtr, &stackP);
-        }
-    }
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 /*                                 POSTORDER                                  */ 
@@ -341,14 +269,9 @@ void Leftmost_Postorder (tBTNodePtr ptr, tStackP *StackP, tStackB *StackB) {
 ** navštíven poprvé a že se tedy ještě nemá zpracovávat. 
 **/
 
-    if(ptr != NULL){ // Testujeme ptr
-        while(ptr != NULL){ // Cyklíme pokial ptr nebude null.
-            SPushP(StackP, ptr); // Pushujeme na zasobník
-            SPushB(StackB, true); // Pushujeme na zasobník
-            ptr = ptr->LPtr;
-
-        }
-    }
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 void BTPostorder (tBTNodePtr RootPtr)	{
@@ -358,27 +281,9 @@ void BTPostorder (tBTNodePtr RootPtr)	{
 ** Zpracování jednoho uzlu stromu realizujte jako volání funkce BTWorkOut(). 
 **/
 
-    if(RootPtr != NULL){
-        tStackP stackP;
-        tStackB stackB;
-        SInitP(&stackP); // Voláme pomocnú funkciu na inicializáciu stacku
-        SInitB(&stackB); // Voláme pomocnú funkciu na inicializáciu stacku
-        bool Left;
-        Leftmost_Postorder(RootPtr, &stackP, &stackB); // Voláme pomocnú funkciu pre uloženie na stack
-        while (!SEmptyP(&stackP)){ // Cyklíme dokiaľ stack nebude prázdny (pomocou pomocnej funkcie)
-            RootPtr = STopPopP(&stackP);
-            SPushP(&stackP, RootPtr); // Vkládame na zásobník
-            Left = STopPopB(&stackB);
-            if(Left){ // Ideme zľava doprava
-                SPushB(&stackB,false);
-                Leftmost_Postorder(RootPtr->RPtr, &stackP, &stackB);
-            }
-            else{ // Ideme zprava a odstránime "Root"
-                STopPopP(&stackP);
-                BTWorkOut(RootPtr);
-            }
-        }
-    }
+	
+		
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
 
 
@@ -389,30 +294,10 @@ void BTDisposeTree (tBTNodePtr *RootPtr)	{
 ** Funkci implementujte nerekurzivně s využitím zásobníku ukazatelů.
 **/
 
-    if((*RootPtr) != NULL) //strom existuje
-    {
-        tStackP stackP; // Voláme pomocnú funkciu na inicializáciu stacku
-        SInitP(&stackP); 
-        do{
-            if(*RootPtr == NULL) { // Kontrolujeme či exstuje Root
-                if (!SEmptyP(&stackP)) {
-                    *RootPtr = STopPopP(&stackP); // Vezmeme uzol zo zásobníku
-                }
-            }
-            else{
-                if((*RootPtr)->RPtr != NULL){ // Pravého syna dávame na zásobník
-                    SPushP(&stackP, (*RootPtr)->RPtr);
-                }
-                tBTNodePtr TempPtr;
-                TempPtr = *RootPtr;
-                *RootPtr = (*RootPtr)->LPtr; // Ideme doľava
-                free(TempPtr); // Zrušíme aktuálny uzol
-                }
-        }while((*RootPtr != NULL) || (!SEmptyP(&stackP)));
-    }
+	
+	
+	 solved = FALSE;		  /* V případě řešení smažte tento řádek! */	
 }
-
-/*Pri písaní tohto kódu som vychádzal z výukovych materiálov predmetu IAL*/
 
 /* konec c402.c */
 
